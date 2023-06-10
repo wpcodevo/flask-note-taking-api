@@ -18,6 +18,9 @@ def create_note():
                 title=body.title.data,
                 content=body.content.data,
             )
+            if body.category.data:
+                note.category = body.category.data
+
             db.session.add(note)
             db.session.commit()
             return {'status': 'success', 'data': {'note': note.to_dict()}}, 201
