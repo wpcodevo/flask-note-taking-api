@@ -18,7 +18,7 @@ commands:
 	flask db upgrade
 
 install-modules:
-	pip install flask python-dotenv flask-cors
+	pip install flask python-dotenv Flask-Cors
 	pip install flask_sqlalchemy psycopg2-binary
 	pip install WTForms Flask-WTF
 	pip install Flask-Migrate

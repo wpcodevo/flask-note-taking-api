@@ -4,6 +4,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 from src.models import db, migrate
+import src.utils as utils
 
 
 def handle_error(error):
@@ -26,6 +27,7 @@ def create_app():
     db.init_app(app)
 
     migrate.init_app(app, db)
+    utils.csrf.init_app(app)
 
     @app.get('/api/healthchecker')
     def healthchecker():

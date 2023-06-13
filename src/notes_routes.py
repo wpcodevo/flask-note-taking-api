@@ -4,8 +4,10 @@ from flask import request
 from datetime import datetime
 from flask_wtf.csrf import generate_csrf
 from sqlalchemy.exc import IntegrityError
+import src.utils as utils
 
 
+@utils.csrf.exempt
 def create_note():
     body = CreateNoteForm()
 
@@ -32,6 +34,7 @@ def create_note():
         return {'status': 'fail', 'errors': body.errors}, 400
 
 
+@utils.csrf.exempt
 def update_note(note_id):
     body = UpdateNoteForm()
 
@@ -70,6 +73,7 @@ def get_note(note_id):
         return {"status": "fail", 'message': f'Note with id {note_id} not found'}, 404
 
 
+@utils.csrf.exempt
 def delete_note(note_id):
     note = Note.query.get(note_id)
 
